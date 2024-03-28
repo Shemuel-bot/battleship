@@ -40,5 +40,16 @@ class GameBoard {
 
     });
   }
+
+  haveLost(){
+    let sunk = false;
+    this.ships.forEach((x)=>{
+        if(x.ship.sunk)
+            sunk = true;
+        else
+            sunk = false
+    })
+    return sunk
+  }
 }
 export default GameBoard;

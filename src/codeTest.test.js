@@ -41,3 +41,9 @@ test('test if recieveAttack function stores missed attacks', ()=>{
         [5,4]
     ]);
 })
+test('test if gameboard can check all boats are sunk', ()=>{
+    const Board = new GameBoard();
+    Board.placeShip([4,4],1)
+    Board.recieveAttack([4,4]);
+    expect(Board.haveLost()).toBe(true);
+})
