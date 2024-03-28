@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
 import Ship from './ship';
+import GameBoard from './gameBoard'
 
-test('checks if ship hit function works', ()=>{
+test('checks if Ship hit function works', ()=>{
     const battleShip = new Ship(5);
     battleShip.hit();
     expect(battleShip.hits).toBe(1);
 })
-test('test if isSunk function on ship works', ()=>{
+test('test if isSunk function on Ship works', ()=>{
     const battleShip = new Ship(5);
     battleShip.hit();
     battleShip.hit();
@@ -14,4 +15,29 @@ test('test if isSunk function on ship works', ()=>{
     battleShip.hit();
     battleShip.hit();
     expect(battleShip.sunk).toBe(true)
+})
+
+test('test if gameBoard can place ships', ()=>{
+    const Board = new GameBoard();
+    Board.placeShip([4, 4], 4);
+    expect(Board.ships).toEqual([
+        {
+            ship: new Ship(4),
+            coordinates:[[3,4],[4, 4],[5,4],[6, 4]]
+        }
+    ]);
+})
+test('test if recieveAttack function works', ()=>{
+    const Board = new GameBoard();
+    Board.placeShip([4,4],1)
+    Board.recieveAttack([4,4]);
+    expect(Board.ships[0].ship.sunk).toBe(true);
+})
+test('test if recieveAttack function stores missed attacks', ()=>{
+    const Board = new GameBoard();
+    Board.placeShip([4,4],1)
+    Board.recieveAttack([5,4]);
+    expect(Board.missedAttacks).toEqual([
+        [5,4]
+    ]);
 })
