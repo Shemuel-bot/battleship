@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import Ship from './ship';
 import GameBoard from './gameBoard'
+import Player from './player'
 
 test('checks if Ship hit function works', ()=>{
     const battleShip = new Ship(5);
@@ -46,4 +47,33 @@ test('test if gameboard can check all boats are sunk', ()=>{
     Board.placeShip([4,4],1)
     Board.recieveAttack([4,4]);
     expect(Board.haveLost()).toBe(true);
+})
+
+test('checks if player switchTurns works', ()=>{
+    const newPlayer = new Player();
+    newPlayer.switchTurns();
+    expect(newPlayer.myTurn).toBe(false)
+})
+test('checks if player bot works', ()=>{
+    const newPlayer = new Player(true);
+    const Board = new GameBoard();
+    expect(newPlayer.aiShot(Board)).not.toBeUndefined()
+})
+test('checks if player bot works', ()=>{
+    const newPlayer = new Player(true);
+    const Board = new GameBoard();
+    Board.recieveAttack([4, 4]);
+    expect(newPlayer.aiShot(Board)).not.toEqual([4, 4])
+})
+test('checks if player bot works', ()=>{
+    const newPlayer = new Player(true);
+    const Board = new GameBoard();
+    Board.recieveAttack([6, 2]);
+    expect(newPlayer.aiShot(Board)).not.toEqual([6, 2])
+})
+test('checks if player bot works', ()=>{
+    const newPlayer = new Player(true);
+    const Board = new GameBoard();
+    Board.recieveAttack([2, 4]);
+    expect(newPlayer.aiShot(Board)).not.toEqual([2, 4])
 })

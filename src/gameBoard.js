@@ -4,6 +4,7 @@ class GameBoard {
   constructor() {
     this.ships = [];
     this.missedAttacks = [];
+    this.hitShipsAttacks = [];
   }
 
   placeShip(coordinate, length) {
@@ -33,23 +34,20 @@ class GameBoard {
       if (
         x.coordinates[this.ships.indexOf(x)][0] === coordinate[0] &&
         x.coordinates[this.ships.indexOf(x)][1] === coordinate[1]
-      )
+      ) {
         x.ship.hit();
-    else
-        this.missedAttacks.push(coordinate)
-
+        this.hitShipsAttacks.push(coordinate);
+      } else this.missedAttacks.push(coordinate);
     });
   }
 
-  haveLost(){
+  haveLost() {
     let sunk = false;
-    this.ships.forEach((x)=>{
-        if(x.ship.sunk)
-            sunk = true;
-        else
-            sunk = false
-    })
-    return sunk
+    this.ships.forEach((x) => {
+      if (x.ship.sunk) sunk = true;
+      else sunk = false;
+    });
+    return sunk;
   }
 }
 export default GameBoard;
