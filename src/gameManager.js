@@ -1,16 +1,15 @@
 import Player from "./player";
 import GameBoard from "./gameBoard";
 
-let newPlayer = new Player();
-let newAi = new Player(true);
-let playerBoard = GameBoard();
-let aiBoard = GameBoard();
+const player0 = new Player();
+const bot = new Player(true);
 
-const newGame = () => {
-  newPlayer = new Player();
-  newAi = new Player(true);
-  playerBoard = GameBoard();
-  aiBoard = GameBoard();
-};
+const playerGameBoard = new GameBoard();
+const botGameBOard = new GameBoard();
 
-export { newAi, newPlayer, playerBoard, aiBoard, newGame};
+while(true){
+    if(!player0.myTurn && bot.myTurn){
+        playerGameBoard.recieveAttack(bot.aiShot(playerGameBoard))
+    }
+}
+
