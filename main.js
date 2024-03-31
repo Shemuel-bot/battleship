@@ -126,7 +126,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   remakeSquares: () => (/* binding */ remakeSquares),\n/* harmony export */   removeSquare: () => (/* binding */ removeSquare)\n/* harmony export */ });\nconst remakeSquares = ()=>{\n    for (let i = 0; i < 64; i+=1) {\n        const square0 = document.createElement('div');\n        const square1 = document.createElement('div');\n\n        square0.style.width = '40px';\n        square0.style.height = '40px';\n        square1.style.width = '40px';\n        square1.style.height = '40px';\n        document.getElementById('ai-board').appendChild(square0);\n        document.getElementById('player-board').appendChild(square1);\n    }\n}\n\ndocument.querySelector('button').addEventListener('click', ()=>remakeSquares())\nconst removeSquare = ()=>{\n\n}\n\n\n\n//# sourceURL=webpack://battleship/./src/DOMinteractions.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   remakeSquares: () => (/* binding */ remakeSquares),\n/* harmony export */   removeSquare: () => (/* binding */ removeSquare)\n/* harmony export */ });\nconst remakeSquares = () => {\n  let y = 8;\n  let x = 1;\n  for (let i = 0; i < 64; i += 1) {\n    if (x > 8) {\n      y -= 1;\n      x = 1;\n    }\n    const square0 = document.createElement(\"div\");\n    const square1 = document.createElement(\"div\");\n\n    square0.id = `${[x, y]}`;\n    square1.id = `${[x, y]}`;\n    x += 1;\n\n    square0.style.width = \"40px\";\n    square0.style.height = \"40px\";\n    square1.style.width = \"40px\";\n    square1.style.height = \"40px\";\n\n    document.getElementById(\"ai-board\").appendChild(square0);\n    document.getElementById(\"player-board\").appendChild(square1);\n  }\n};\n\ndocument\n  .querySelector(\"button\")\n  .addEventListener(\"click\", () => remakeSquares());\nconst removeSquare = () => {};\n\n\n\n//# sourceURL=webpack://battleship/./src/DOMinteractions.js?");
 
 /***/ }),
 
@@ -136,7 +136,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _DOMinteractions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DOMinteractions */ \"./src/DOMinteractions.js\");\n\n\n\n\nconsole.log(64/0)\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _DOMinteractions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DOMinteractions */ \"./src/DOMinteractions.js\");\n\n\n// import './gameManager'\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ }),
 
