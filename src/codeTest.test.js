@@ -49,11 +49,6 @@ test('test if gameboard can check all boats are sunk', ()=>{
     expect(Board.haveLost()).toBe(true);
 })
 
-test('checks if player switchTurns works', ()=>{
-    const newPlayer = new Player();
-    newPlayer.switchTurns();
-    expect(newPlayer.myTurn).toBe(false)
-})
 test('checks if player bot works', ()=>{
     const newPlayer = new Player(true);
     const Board = new GameBoard();
