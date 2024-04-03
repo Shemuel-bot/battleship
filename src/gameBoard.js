@@ -49,16 +49,12 @@ class GameBoard {
     this.allShipCoordinates.push(...object.coordinates)
   }
 
-  eraseAllShipPlacements(){
-    this.allShipCoordinates = []
-    this.ships = []
-  }
 
   recieveAttack(coordinate) {
     let contains = false
     this.ships.forEach((x) => {
       x.coordinates.forEach((y)=>{
-        if(y[0] === Number(coordinate[0]) && y[1] === Number(coordinate[1])){
+        if(Number(y[0]) === Number(coordinate[0]) && Number(y[1]) === Number(coordinate[1])){
             x.ship.hit();
             this.hitShipsAttacks.push(coordinate);
             contains = true
@@ -71,12 +67,9 @@ class GameBoard {
   }
 
   haveLost() {
-    let sunk = false;
-    this.ships.forEach((x) => {
-      if (x.ship.sunk) sunk = true;
-      else sunk = false;
-    });
-    return sunk;
+    if(this.hitShipsAttacks.length === this.allShipCoordinates.length)
+        return true;
+    return false
   }
 }
 export default GameBoard;

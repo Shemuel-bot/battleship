@@ -36,7 +36,7 @@ const updatePlayerBoardsMissedShots = (array) => {
   for (let i = 0; i < playerBoard.length; i += 1) {
     const id = `${playerBoard[i].id}`;
     array.forEach((x) => {
-      if (x[0] === Number(id.at(0)) && x[1] === Number(id.at(2))) {
+      if (Number(x[0]) === Number(id.at(0)) && Number(x[1]) === Number(id.at(2))) {
         playerBoard[i].style.backgroundColor = "#f87171";
       }
     });
@@ -50,7 +50,7 @@ const updatePlayerBoardsHitTargets = (array) => {
   for (let i = 0; i < playerBoard.length; i += 1) {
     const id = `${playerBoard[i].id}`;
     array.forEach((b) => {
-      if (b[0] === Number(id.at(0)) && b[1] === Number(id.at(2))) {
+      if (Number(b[0]) === Number(id.at(0)) && Number(b[1]) === Number(id.at(2))) {
         playerBoard[i].style.backgroundColor = "#22d3ee";
       }
     });

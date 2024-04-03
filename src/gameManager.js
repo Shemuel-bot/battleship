@@ -33,12 +33,13 @@ const newGame = () => {
 };
 
 const attackBoard = (coordinate) => {
+    
   if (!botGameBoard.haveLost() && !playerGameBoard.haveLost()) {
     botGameBoard.recieveAttack(coordinate);
     playerGameBoard.recieveAttack(botPlayer.aiShot(playerGameBoard));
     updateAiBoardsMissedShots(botGameBoard.missedAttacks);
     updateAiBoardsHitTargets(botGameBoard.hitShipsAttacks);
-    
+
     updatePlayerBoardsHitTargets(playerGameBoard.hitShipsAttacks);
     updatePlayerBoardsMissedShots(playerGameBoard.missedAttacks);
   }
