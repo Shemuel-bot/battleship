@@ -5,7 +5,7 @@ import {
   displayHoveringPlayerShips,
 } from "./gameManager";
 
-const updateAiBoardsMissedShots = (array) => {
+export const updateAiBoardsMissedShots = (array) => {
   const aiBoard = Array.from(document.getElementById("ai-board").childNodes);
   for (let i = 0; i < aiBoard.length; i += 1) {
     const id = `${aiBoard[i].id}`;
@@ -17,7 +17,7 @@ const updateAiBoardsMissedShots = (array) => {
   }
 };
 
-const updateAiBoardsHitTargets = (array) => {
+export const updateAiBoardsHitTargets = (array) => {
   const aiBoard = Array.from(document.getElementById("ai-board").childNodes);
   for (let i = 0; i < aiBoard.length; i += 1) {
     const id = `${aiBoard[i].id}`;
@@ -29,7 +29,7 @@ const updateAiBoardsHitTargets = (array) => {
   }
 };
 
-const updatePlayerBoardsMissedShots = (array) => {
+export const updatePlayerBoardsMissedShots = (array) => {
   const playerBoard = Array.from(
     document.getElementById("player-board").childNodes,
   );
@@ -43,7 +43,7 @@ const updatePlayerBoardsMissedShots = (array) => {
   }
 };
 
-const updatePlayerBoardsHitTargets = (array) => {
+export const updatePlayerBoardsHitTargets = (array) => {
   const playerBoard = Array.from(
     document.getElementById("player-board").childNodes,
   );
@@ -57,7 +57,7 @@ const updatePlayerBoardsHitTargets = (array) => {
   }
 };
 
-const displayPlayerShips = (array) => {
+export const displayPlayerShips = (array) => {
   const playerBoard = Array.from(
     document.getElementById("player-board").childNodes,
   );
@@ -70,7 +70,7 @@ const displayPlayerShips = (array) => {
   });
 };
 
-const displayHoveringShips = (array) => {
+export const displayHoveringShips = (array) => {
   const playerBoard = Array.from(
     document.getElementById("player-board").childNodes,
   );
@@ -85,6 +85,10 @@ const displayHoveringShips = (array) => {
         "#a1a1aa";
   });
 };
+
+export const displayWinner = (winner) =>{
+    document.getElementById('winner-banner').textContent = `${winner}, Won!`
+}
 
 const remakeSquares = () => {
   let y = 8;
@@ -138,14 +142,3 @@ document.querySelector("button").addEventListener("click", () => {
   remakeSquares();
   newGame();
 });
-
-export {
-  remakeSquares,
-  removeSquare,
-  updateAiBoardsMissedShots,
-  updateAiBoardsHitTargets,
-  updatePlayerBoardsHitTargets,
-  updatePlayerBoardsMissedShots,
-  displayPlayerShips,
-  displayHoveringShips,
-};

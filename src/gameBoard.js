@@ -5,25 +5,28 @@ class GameBoard {
     this.ships = [];
     this.missedAttacks = [];
     this.hitShipsAttacks = [];
-    this.allShipCoordinates = []
+    this.allShipCoordinates = [];
   }
 
-  specificShipCoodinates(coordinate, length){
-    const coordinates = []
+  specificShipCoodinates(coordinate, length) {
+    const coordinates = [];
     if (length > 1) {
-        for (let i = 0; i < length; i += 1) {
-          if (i < length / 2)
-            coordinates.unshift([Number(coordinate[0]) + -i, Number(coordinate[1])]);
-          else {
-            const array = [];
-            coordinates.forEach((x) => {
-              array.push(x[0]);
-            });
-            coordinates.push([Math.max(...array) + 1, coordinate[1]]);
-          }
+      for (let i = 0; i < length; i += 1) {
+        if (i < length / 2)
+          coordinates.unshift([
+            Number(coordinate[0]) + -i,
+            Number(coordinate[1]),
+          ]);
+        else {
+          const array = [];
+          coordinates.forEach((x) => {
+            array.push(x[0]);
+          });
+          coordinates.push([Math.max(...array) + 1, coordinate[1]]);
         }
-      } else if (length === 1) coordinates.push(coordinate);
-      return coordinates;
+      }
+    } else if (length === 1) coordinates.push(coordinate);
+    return coordinates;
   }
 
   placeShip(coordinate, length) {
@@ -34,7 +37,10 @@ class GameBoard {
     if (length > 1) {
       for (let i = 0; i < length; i += 1) {
         if (i < length / 2)
-          object.coordinates.unshift([Number(coordinate[0]) + -i, Number(coordinate[1])]);
+          object.coordinates.unshift([
+            Number(coordinate[0]) + -i,
+            Number(coordinate[1]),
+          ]);
         else {
           const array = [];
           object.coordinates.forEach((x) => {
@@ -46,30 +52,35 @@ class GameBoard {
     } else if (length === 1) object.coordinates.push(coordinate);
 
     this.ships.push(object);
-    this.allShipCoordinates.push(...object.coordinates)
+    this.allShipCoordinates.push(...object.coordinates);
   }
-
 
   recieveAttack(coordinate) {
-    let contains = false
+    let contains = false;
     this.ships.forEach((x) => {
-      x.coordinates.forEach((y)=>{
-        if(Number(y[0]) === Number(coordinate[0]) && Number(y[1]) === Number(coordinate[1])){
-            x.ship.hit();
+      x.coordinates.forEach((y) => {
+        if (
+          Number(y[0]) === Number(coordinate[0]) &&
+          Number(y[1]) === Number(coordinate[1])
+        ) {
+          if (!`${this.hitShipsAttacks}`.includes(`${coordinate}`)) {
             this.hitShipsAttacks.push(coordinate);
-            contains = true
-            // eslint-disable-next-line no-useless-return
-            return;
+            contains = true;
+          }
+          // eslint-disable-next-line no-useless-return
+          return;
         }
-      })
-    });     
-    if(!contains)this.missedAttacks.push(coordinate);
+      });
+    });
+    if (!contains) this.missedAttacks.push(coordinate);
   }
 
+
+
   haveLost() {
-    if(this.hitShipsAttacks.length === this.allShipCoordinates.length)
-        return true;
-    return false
+    if (this.hitShipsAttacks.length === this.allShipCoordinates.length)
+      return true;
+    return false;
   }
 }
 export default GameBoard;
