@@ -14,17 +14,17 @@ let playerGameBoard = new GameBoard();
 let botGameBoard = new GameBoard();
 const botPlayer = new AI(true);
 
-const randomCoordNumber = () => {
-  const num = Math.floor(Math.random() * 8);
+const randomCoordNumber = (max) => {
+  const num = Math.floor(Math.random() * max);
   if (num <= 0) return 1;
   return num;
 };
 
 const placeBotShips = () => {
-  botGameBoard.placeShip([randomCoordNumber(), randomCoordNumber()], 1);
-  botGameBoard.placeShip([5, randomCoordNumber()], 4);
-  botGameBoard.placeShip([4, randomCoordNumber()], 3);
-  botGameBoard.placeShip([7, randomCoordNumber()], 2);
+  botGameBoard.placeShip([randomCoordNumber(4), randomCoordNumber(8)], 1);
+  botGameBoard.placeShip([5, randomCoordNumber(8)], 4);
+  botGameBoard.placeShip([4, randomCoordNumber(8)], 3);
+  botGameBoard.placeShip([7, randomCoordNumber(8)], 2);
 };
 
 export const newGame = () => {
