@@ -20,36 +20,33 @@ const randomCoordNumber = (max) => {
   return num;
 };
 
-const placeBotShips = () => {
-  botGameBoard.placeShip([randomCoordNumber(4), randomCoordNumber(8)], 1);
-  botGameBoard.placeShip([5, randomCoordNumber(8)], 4);
-  botGameBoard.placeShip([4, randomCoordNumber(8)], 3);
-  botGameBoard.placeShip([7, randomCoordNumber(8)], 2);
-};
-
 export const newGame = () => {
   playerGameBoard = new GameBoard();
   botGameBoard = new GameBoard();
-  placeBotShips();
 };
 
 export const attackBoard = (coordinate) => {
-  if (!botGameBoard.haveLost() && !playerGameBoard.haveLost()) {
-    botGameBoard.recieveAttack(coordinate);
-    playerGameBoard.recieveAttack(botPlayer.aiShot(playerGameBoard));
-    updateAiBoardsMissedShots(botGameBoard.missedAttacks);
-    updateAiBoardsHitTargets(botGameBoard.hitShipsAttacks);
+  if (playerGameBoard.ships.length === 4) {
+    if (!botGameBoard.haveLost() && !playerGameBoard.haveLost()) {
+      botGameBoard.recieveAttack(coordinate);
+      playerGameBoard.recieveAttack(botPlayer.aiShot(playerGameBoard));
+      updateAiBoardsMissedShots(botGameBoard.missedAttacks);
+      updateAiBoardsHitTargets(botGameBoard.hitShipsAttacks);
 
-    updatePlayerBoardsHitTargets(playerGameBoard.hitShipsAttacks);
-    updatePlayerBoardsMissedShots(playerGameBoard.missedAttacks);
+      updatePlayerBoardsHitTargets(playerGameBoard.hitShipsAttacks);
+      updatePlayerBoardsMissedShots(playerGameBoard.missedAttacks);
+    }
+    if (botGameBoard.haveLost()) displayWinner("You");
+    if (playerGameBoard.haveLost()) displayWinner("CPU");
   }
-  if (botGameBoard.haveLost()) displayWinner("You");
-  if (playerGameBoard.haveLost()) displayWinner("CPU");
+  console.log(botGameBoard.allShipCoordinates);
+  console.log(botGameBoard.hitShipsAttacks);
 };
 
 export const placePlayerShips = (coordinate) => {
   if (playerGameBoard.ships.length < 4) {
     playerGameBoard.placeShip(coordinate, playerGameBoard.ships.length + 1);
+    botGameBoard.placeShip(coordinate, botGameBoard.ships.length + 1);
     displayPlayerShips(playerGameBoard.allShipCoordinates);
   }
 };

@@ -58,7 +58,7 @@ export default class GameBoard {
         this.allShipCoordinates.splice(this.allShipCoordinates.indexOf(x), 1);
     });
 
-    // this here the splicing of the last element the the array isn't work in the forEach
+    // this is here cause the splicing of the last element in the the array isn't work in the forEach
     if (
       this.allShipCoordinates[this.allShipCoordinates.length - 1][0] < 1 ||
       this.allShipCoordinates[this.allShipCoordinates.length - 1][0] > 8
@@ -77,8 +77,6 @@ export default class GameBoard {
             this.hitShipsAttacks.push(coordinate);
             contains = true;
           }
-          // eslint-disable-next-line no-useless-return
-          return;
         }
       });
     if (!contains) this.missedAttacks.push(coordinate);

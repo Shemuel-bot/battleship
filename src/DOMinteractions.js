@@ -112,8 +112,8 @@ const remakeSquares = () => {
     square1.style.width = "40px";
     square1.style.height = "40px";
 
-    square0.id = [x, y];
-    square1.id = [x, y];
+    square0.id = [x,y];
+    square1.id = [x,y];
     x += 1;
 
     document.getElementById("ai-board").appendChild(square0);
@@ -147,4 +147,5 @@ document.querySelector("button").addEventListener("click", () => {
   removeSquare();
   remakeSquares();
   newGame();
+  document.getElementById('winner-banner').textContent = '';
 });
