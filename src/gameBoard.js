@@ -1,6 +1,6 @@
 import Ship from "./ship";
 
-class GameBoard {
+export default class GameBoard {
   constructor() {
     this.ships = [];
     this.missedAttacks = [];
@@ -53,6 +53,16 @@ class GameBoard {
 
     this.ships.push(object);
     this.allShipCoordinates.push(...object.coordinates);
+    this.allShipCoordinates.forEach((x) => {
+      if (Number(x[0]) < 1 || Number(x[0]) > 8)
+        this.allShipCoordinates.splice(this.allShipCoordinates.indexOf(x), 2);
+    });
+    // this here the splicing of the last element the the array isn't work in the forEach
+    if (
+      this.allShipCoordinates[this.allShipCoordinates.length - 1][0] < 1 ||
+      this.allShipCoordinates[this.allShipCoordinates.length - 1][0] > 8
+    )
+      this.allShipCoordinates.splice(this.allShipCoordinates.length - 1, 1);
   }
 
   recieveAttack(coordinate) {
@@ -75,12 +85,12 @@ class GameBoard {
     if (!contains) this.missedAttacks.push(coordinate);
   }
 
-
-
   haveLost() {
+    console.clear();
+    console.log(this.hitShipsAttacks);
+    console.log(this.allShipCoordinates);
     if (this.hitShipsAttacks.length === this.allShipCoordinates.length)
       return true;
     return false;
   }
 }
-export default GameBoard;

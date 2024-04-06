@@ -1,4 +1,4 @@
-import AI from './ai';
+import AI from "./ai";
 import GameBoard from "./gameBoard";
 import {
   updateAiBoardsHitTargets,
@@ -7,12 +7,12 @@ import {
   updatePlayerBoardsMissedShots,
   displayPlayerShips,
   displayHoveringShips,
-  displayWinner
+  displayWinner,
 } from "./DOMinteractions";
 
 let playerGameBoard = new GameBoard();
 let botGameBoard = new GameBoard();
-const botPlayer = new AI(true);
+const botPlayer = new AI();
 
 const randomCoordNumber = (max) => {
   const num = Math.floor(Math.random() * max);
@@ -43,10 +43,8 @@ export const attackBoard = (coordinate) => {
     updatePlayerBoardsHitTargets(playerGameBoard.hitShipsAttacks);
     updatePlayerBoardsMissedShots(playerGameBoard.missedAttacks);
   }
-  if(botGameBoard.haveLost())
-        displayWinner('You')
-  if(playerGameBoard.haveLost())
-        displayWinner('CPU')
+  if (botGameBoard.haveLost()) displayWinner("You");
+  if (playerGameBoard.haveLost()) displayWinner("CPU");
 };
 
 export const placePlayerShips = (coordinate) => {
@@ -56,8 +54,13 @@ export const placePlayerShips = (coordinate) => {
   }
 };
 
-export const displayHoveringPlayerShips = (coordinate) =>{
-    if (playerGameBoard.ships.length < 4) {
-        displayHoveringShips(playerGameBoard.specificShipCoodinates(coordinate, playerGameBoard.ships.length + 1))
-    }
-}
+export const displayHoveringPlayerShips = (coordinate) => {
+  if (playerGameBoard.ships.length < 4) {
+    displayHoveringShips(
+      playerGameBoard.specificShipCoodinates(
+        coordinate,
+        playerGameBoard.ships.length + 1,
+      ),
+    );
+  }
+};

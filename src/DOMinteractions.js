@@ -36,7 +36,10 @@ export const updatePlayerBoardsMissedShots = (array) => {
   for (let i = 0; i < playerBoard.length; i += 1) {
     const id = `${playerBoard[i].id}`;
     array.forEach((x) => {
-      if (Number(x[0]) === Number(id.at(0)) && Number(x[1]) === Number(id.at(2))) {
+      if (
+        Number(x[0]) === Number(id.at(0)) &&
+        Number(x[1]) === Number(id.at(2))
+      ) {
         playerBoard[i].style.backgroundColor = "#f87171";
       }
     });
@@ -50,7 +53,10 @@ export const updatePlayerBoardsHitTargets = (array) => {
   for (let i = 0; i < playerBoard.length; i += 1) {
     const id = `${playerBoard[i].id}`;
     array.forEach((b) => {
-      if (Number(b[0]) === Number(id.at(0)) && Number(b[1]) === Number(id.at(2))) {
+      if (
+        Number(b[0]) === Number(id.at(0)) &&
+        Number(b[1]) === Number(id.at(2))
+      ) {
         playerBoard[i].style.backgroundColor = "#22d3ee";
       }
     });
@@ -77,7 +83,7 @@ export const displayHoveringShips = (array) => {
   const ids = [];
   playerBoard.forEach((a) => ids.push(a.id));
   playerBoard.forEach((b) => {
-      b.style.backgroundColor = "white";
+    b.style.backgroundColor = "white";
   });
   array.forEach((a) => {
     if (ids.includes(`${a[0]},${a[1]}`))
@@ -86,9 +92,9 @@ export const displayHoveringShips = (array) => {
   });
 };
 
-export const displayWinner = (winner) =>{
-    document.getElementById('winner-banner').textContent = `${winner}, Won!`
-}
+export const displayWinner = (winner) => {
+  document.getElementById("winner-banner").textContent = `${winner}, Won!`;
+};
 
 const remakeSquares = () => {
   let y = 8;
