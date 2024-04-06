@@ -86,9 +86,6 @@ export default class GameBoard {
   }
 
   haveLost() {
-    console.clear();
-    console.log(this.hitShipsAttacks);
-    console.log(this.allShipCoordinates);
     if (this.hitShipsAttacks.length === this.allShipCoordinates.length)
       return true;
     return false;
