@@ -62,7 +62,7 @@ export default class GameBoard {
       this.allShipCoordinates[this.allShipCoordinates.length - 1][0] < 1 ||
       this.allShipCoordinates[this.allShipCoordinates.length - 1][0] > 8
     )
-      this.allShipCoordinates.splice(this.allShipCoordinates.length - 1, 1);
+      this.allShipCoordinates.splice(this.allShipCoordinates.length - 1, 2);
   }
 
   recieveAttack(coordinate) {
