@@ -57,6 +57,7 @@ export default class GameBoard {
       if (Number(x[0]) < 1 || Number(x[0]) > 8)
         this.allShipCoordinates.splice(this.allShipCoordinates.indexOf(x), 1);
     });
+    
     // this here the splicing of the last element the the array isn't work in the forEach
     if (
       this.allShipCoordinates[this.allShipCoordinates.length - 1][0] < 1 ||
